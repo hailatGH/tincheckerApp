@@ -11,14 +11,11 @@ import {
 import { Entypo } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { app } from "../firebase";
-
-const auth = getAuth(app);
+import { auth } from "../firebase";
 
 const RegisterScreen = (props) => {
   const [showPassword, setShowPassword] = useState(true);
@@ -33,17 +30,15 @@ const RegisterScreen = (props) => {
     if (password === confirmpassword) {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          // Signed in
           const user = userCredential.user;
-          // ...
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          // ..
+          alert(errorMessage);
         });
     } else {
-      console.log("Password and Confirm Password does not match");
+      alert("Password and Confirm Password does not match");
     }
   };
 
@@ -74,7 +69,7 @@ const RegisterScreen = (props) => {
             keyboardType="email-address"
             value={email}
             onChangeText={(text) => setEmail(text)}
-            // autoCorrect={false}
+            autoCapitalize={false}
           />
         </View>
 
@@ -87,6 +82,7 @@ const RegisterScreen = (props) => {
               secureTextEntry={showPassword}
               value={password}
               onChangeText={(text) => setPassword(text)}
+              autoCapitalize={false}
             />
             <View className="absolute top-4 right-2">
               <TouchableWithoutFeedback
@@ -113,6 +109,7 @@ const RegisterScreen = (props) => {
               secureTextEntry={showConfirmPassword}
               value={confirmpassword}
               onChangeText={(text) => setConfirmPassword(text)}
+              autoCapitalize={false}
             />
             <View className="absolute top-4 right-2">
               <TouchableWithoutFeedback
@@ -156,7 +153,7 @@ const RegisterScreen = (props) => {
           <Text className="text-base">Already have account?</Text>
           <Text
             className="font-bold text-base text-gray-700"
-            onPress={() => navigation.navigate("Welcome")}
+            onPress={() => navigation.navigate("Login")}
           >
             Sign In
           </Text>

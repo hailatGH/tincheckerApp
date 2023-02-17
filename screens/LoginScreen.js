@@ -9,19 +9,13 @@ import {
   ScrollView,
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
-import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 
-import { app } from "../firebase";
+import { auth, app } from "../firebase";
 
-const auth = getAuth(app);
-
-const WelcomeScreen = (props) => {
-  const [showPassword, setShowPassword] = useState();
+const LoginScreen = (props) => {
+  const [showPassword, setShowPassword] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -42,12 +36,10 @@ const WelcomeScreen = (props) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log("Logged in with:", user.email);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode);
       });
   };
 
@@ -74,6 +66,7 @@ const WelcomeScreen = (props) => {
             placeholder="Enter your email"
             value={email}
             onChangeText={(text) => setEmail(text)}
+            autoCapitalize={false}
           />
         </View>
 
@@ -86,6 +79,7 @@ const WelcomeScreen = (props) => {
               secureTextEntry={showPassword}
               value={password}
               onChangeText={(text) => setPassword(text)}
+              autoCapitalize={false}
             />
             <View className="absolute top-4 right-2">
               <TouchableWithoutFeedback
@@ -137,4 +131,4 @@ const WelcomeScreen = (props) => {
   );
 };
 
-export default WelcomeScreen;
+export default LoginScreen;

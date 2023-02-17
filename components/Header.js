@@ -7,18 +7,11 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import Constants from "expo-constants";
-import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
+import { signOut } from "firebase/auth";
 
-import { app } from "../firebase";
+import { auth } from "../firebase";
 import SearchInput from "./SearchInput";
-
-const auth = getAuth(app);
 
 const Header = (props) => {
   const topVal = Constants.statusBarHeight;
@@ -27,7 +20,7 @@ const Header = (props) => {
 
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => navigation.replace("Welcome"))
+      .then(() => navigation.replace("Login"))
       .catch((error) => alert(error.message));
   };
 
