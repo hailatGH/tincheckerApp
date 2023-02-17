@@ -2,9 +2,9 @@ import { View } from "react-native";
 import Details from "../components/Details";
 import Header from "../components/Header";
 
-const data = null;
+const data1 = null;
 
-const data3 = Object.entries({
+const data = Object.entries({
   "ZONE/SUB CITY": "ADDIS KETEMA",
   "TIN NUMBER": "00",
   WOREDA: "12",
