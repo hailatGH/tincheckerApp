@@ -10,9 +10,12 @@ import {
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 
-import { auth, app } from "../firebase";
+import {
+  auth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+} from "../firebase";
 
 const LoginScreen = (props) => {
   const [showPassword, setShowPassword] = useState(true);
@@ -42,6 +45,8 @@ const LoginScreen = (props) => {
         const errorMessage = error.message;
       });
   };
+
+  const handleGoogleSignIn = () => {};
 
   return (
     <ScrollView
@@ -108,6 +113,7 @@ const LoginScreen = (props) => {
           <TouchableOpacity
             className="flex-row w-full items-center justify-center h-10 rounded-md border-2 space-x-3"
             style={{ borderColor: "#535250" }}
+            onPress={handleGoogleSignIn}
           >
             <Image
               source={require("../assets/googlelogo.png")}
