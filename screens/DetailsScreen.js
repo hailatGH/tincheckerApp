@@ -1,10 +1,13 @@
-import { View, Text } from "react-native";
+import { SafeAreaView, Text } from "react-native";
+
+import BackButton from "../components/BackButton";
 
 const DetailsScreen = (props) => {
   return (
-    <View>
+    <SafeAreaView>
+      {/* <BackButton /> */}
       <Text>DetailsScreen</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
