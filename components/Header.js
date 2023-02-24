@@ -13,7 +13,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import SearchInput from "./SearchInput";
 
-const Header = (props) => {
+const Header = ({ tin, setTin }) => {
   const topVal = Constants.statusBarHeight;
 
   const navigation = useNavigation();
@@ -30,7 +30,7 @@ const Header = (props) => {
         top: StatusBar.currentHeight,
       }}
     >
-      <View className="p-4 pb-6" style={{ backgroundColor: "#C2C2C2" }}>
+      <View className="p-4 pb-6 mb-4" style={{ backgroundColor: "#C2C2C2" }}>
         {/* Logo */}
         <View className="flex-row items-center space-x-2">
           <Text
@@ -61,7 +61,7 @@ const Header = (props) => {
         </View>
 
         {/* Search Input */}
-        <SearchInput />
+        <SearchInput tin={tin} setTin={setTin} />
       </View>
     </SafeAreaView>
   );

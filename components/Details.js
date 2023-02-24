@@ -2,6 +2,7 @@ import { View, Text, ScrollView } from "react-native";
 import Constants from "expo-constants";
 
 const Details = ({ data }) => {
+  console.log(data);
   return (
     <View
       style={{
@@ -82,3 +83,18 @@ const Details = ({ data }) => {
 };
 
 export default Details;
+
+const data1 = null;
+
+const data2 = Object.entries({
+  "ZONE/SUB CITY": "ADDIS KETEMA",
+  "TIN NUMBER": "00",
+  WOREDA: "12",
+  LOCALITYDESC: "NO WOREDA-140",
+  REGION: "ADDIS ABABA",
+  "STREET NUMBER": "084",
+  "TAX CENTER NUMBER": "823",
+  "TELEPHONE NUMBER": "251932974375",
+  "TAX PAYER NAME": "SOLOMON GEBREGIORGIS TESFAYE",
+  "TAX PAYER NAME (AMHARIC)": "ሰለሞን ገብረጊዮርጊስ ተስፋዬ",
+});

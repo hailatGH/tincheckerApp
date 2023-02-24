@@ -1,7 +1,7 @@
 import { View, TextInput } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
-const SearchInput = (props) => {
+const SearchInput = ({ tin, setTin }) => {
   return (
     <View
       className="flex-row items-center space-x-3 rounded-md px-4 mt-4"
@@ -13,6 +13,11 @@ const SearchInput = (props) => {
         style={{ lineHeight: -1, color: "#CBCAC8" }}
         placeholder="Enter a TIN."
         placeholderTextColor="#858482"
+        keyboardType="numeric"
+        onChangeText={(text) => {
+          text ? setTin(text) : setTin(0);
+        }}
+        value={tin}
       />
     </View>
   );

@@ -1,27 +1,30 @@
-import { View } from "react-native";
-import Details from "../components/Details";
+import { useEffect, useState } from "react";
+import { View, Text } from "react-native";
+import { create } from "apisauce";
+
+import Cards from "../components/Cards";
 import Header from "../components/Header";
 
-const data1 = null;
-
-const data = Object.entries({
-  "ZONE/SUB CITY": "ADDIS KETEMA",
-  "TIN NUMBER": "00",
-  WOREDA: "12",
-  LOCALITYDESC: "NO WOREDA-140",
-  REGION: "ADDIS ABABA",
-  "STREET NUMBER": "084",
-  "TAX CENTER NUMBER": "823",
-  "TELEPHONE NUMBER": "251932974375",
-  "TAX PAYER NAME": "SOLOMON GEBREGIORGIS TESFAYE",
-  "TAX PAYER NAME (AMHARIC)": "ሰለሞን ገብረጊዮርጊስ ተስፋዬ",
+const api = create({
+  baseURL: "http://127.0.0.1:5000/",
+  headers: { Accept: "application/vnd.github.v3+json" },
 });
 
 const HomeScreen = (props) => {
+  const [tin, setTin] = useState(0);
+  const [responseData, setResponseData] = useState([]);
+
+  useEffect(() => {
+    api
+      .get(`tinchecker/${tin}`)
+      .then((response) => setResponseData(response.data?.tax_payers));
+  }, [tin]);
+
   return (
     <View className="bg-gray-200 flex-1 justify-start">
-      <Header />
-      <Details data={data} />
+      <Header tin={tin} setTin={setTin} />
+      {responseData &&
+        responseData.map((data) => <Cards data={data} key={data.tin} />)}
     </View>
   );
 };
