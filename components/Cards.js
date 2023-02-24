@@ -1,8 +1,11 @@
 import { View, Text, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const Cards = ({ data }) => {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate("Details")}>
       <View
         style={{ backgroundColor: "#C2C2C2" }}
         className="justify-center h-16 mx-5 my-2 px-10 rounded-lg"

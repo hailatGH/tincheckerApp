@@ -8,21 +8,12 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
-import { signOut } from "firebase/auth";
 
-import { auth } from "../firebase";
 import SearchInput from "./SearchInput";
 
 const Header = ({ tin, setTin }) => {
   const topVal = Constants.statusBarHeight;
-
   const navigation = useNavigation();
-
-  const handleSignOut = () => {
-    signOut(auth)
-      .then(() => navigation.replace("Login"))
-      .catch((error) => alert(error.message));
-  };
 
   return (
     <SafeAreaView
@@ -39,7 +30,9 @@ const Header = ({ tin, setTin }) => {
           >
             TINChecker
           </Text>
-          <TouchableWithoutFeedback onPress={handleSignOut}>
+          <TouchableWithoutFeedback
+            onPress={() => navigation.navigate("Account")}
+          >
             <Image
               source={require("../assets/profileimg.jpeg")}
               className="h-10 w-10 rounded-full"
